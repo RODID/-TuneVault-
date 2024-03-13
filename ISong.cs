@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    internal interface ISong
+    internal interface ISong 
     {
         string Name { get; set; }
         string Artist { get; set; }

@@ -8,16 +8,20 @@ namespace Music_Library
 {
     internal class Song : ISong
     {
-        public string Name { get; set; }
-        public string Artist { get; set; }
-        public int DurationInSeconds { get; set; }
-
-        public Song(string name, string artist, int durationInSeconds)
+        public Song(string name, string artist, string albumName, int durationInSeconds)
         {
             Name = name;
             Artist = artist;
+            AlbumName = albumName;
             DurationInSeconds = durationInSeconds;
         }
+
+        public string Name { get; set; }
+        public string Artist { get; set; }
+        public string AlbumName { get; set; }
+        public int DurationInSeconds { get; set; }
+
+        
 
         public void AddSong()
         {
