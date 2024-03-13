@@ -1,0 +1,37 @@
+﻿Interfaces:
+
+    ISong: Interface for representing a song.
+
+    IPlaylist: Interface for representing a playlist.
+
+Classes:
+
+    Song: Class implementing the ISong interface.
+
+    Playlist: Class implementing the IPlaylist interface.
+
+    LibraryManager: Class responsible for managing the library, implementing Singleton pattern to ensure only one instance exists.
+
+    Factory: Class implementing Factory Method pattern to create instances of songs and playlists.
+
+Design Patterns:
+
+    Singleton Pattern:
+
+        Implement the Singleton pattern in the LibraryManager class to ensure
+        there's only one instance responsible for managing the music library
+        throughout the application.
+
+    Factory Method Pattern:
+
+        Utilize the Factory Method pattern in the Factory class to provide a way
+        for creating instances of different types of objects (songs and playlists)
+        without exposing the instantiation logic to the client code.
+
+    Abstract Factory Pattern:
+
+        Apply the Abstract Factory pattern conceptually, if necessary,
+        to create families of related objects. While it's not explicitly mentioned
+        in your requirements, you can use this pattern if your application requires
+        creating multiple families of related objects, such as different
+        types of playlists or songs.
