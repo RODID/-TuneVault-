@@ -21,6 +21,7 @@ namespace Music_Library
 
         public void AddSong()
         {
+            return ISong;
 
         }
 
