@@ -18,6 +18,7 @@ namespace Music_Library
                 return _instance;
             }
         }
+
         private List<ISong> _songs;
 
         private LibraryManager()
@@ -48,10 +49,15 @@ namespace Music_Library
         //Linnear search - Alghorithm
         public List<ISong> SearchSong(string keyword)
         {
-            return _songs.Where (song =>
-                song.Name.Contains(keyword) ||
-                song.Artist.Contains(keyword) ||
-                song.AlbumName.Contains(keyword)).ToList();
+            var searchResults = new List<ISong>();
+
+            searchResults.AddRange(_songs.Where(song => song.Name.Contains(keyword)));
+
+            searchResults.AddRange(_songs.Where(song => song.AlbumName.Contains(keyword) && !searchResults.Contains(song)));
+
+            searchResults.AddRange(_songs.Where(song => song.Artist.Contains(keyword) && !searchResults.Contains(song)));
+
+            return searchResults;
         }
     }
 }

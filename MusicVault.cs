@@ -8,6 +8,13 @@ namespace Music_Library
         public MusicVault()
         {
             InitializeComponent();
+
+            ListViewSong.View = View.Details;
+
+            ListViewSong.Columns.Add("Artist", 150);
+            ListViewSong.Columns.Add("Song", 150);
+            ListViewSong.Columns.Add("Album", 150);
+            ListViewSong.Columns.Add("Duration", 100);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -48,6 +55,7 @@ namespace Music_Library
         private void UpdateListView(ISong song)
         {
             ListViewItem item = new ListViewItem(song.Name);
+
             item.SubItems.Add(song.Artist);
             item.SubItems.Add(song.AlbumName);
             item.SubItems.Add(song.DurationInSeconds.ToString());
