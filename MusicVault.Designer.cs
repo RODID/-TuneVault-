@@ -38,11 +38,9 @@
             label4 = new Label();
             ListViewSong = new ListView();
             listView1 = new ListView();
-            listView2 = new ListView();
-            listView3 = new ListView();
             AddButton = new Button();
             button2 = new Button();
-            button3 = new Button();
+            UpdateButton = new Button();
             ClearButton = new Button();
             SuspendLayout();
             // 
@@ -118,7 +116,7 @@
             // 
             ListViewSong.Location = new Point(278, 42);
             ListViewSong.Name = "ListViewSong";
-            ListViewSong.Size = new Size(265, 125);
+            ListViewSong.Size = new Size(265, 155);
             ListViewSong.TabIndex = 3;
             ListViewSong.UseCompatibleStateImageBehavior = false;
             ListViewSong.View = View.List;
@@ -131,24 +129,6 @@
             listView1.TabIndex = 3;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.List;
-            // 
-            // listView2
-            // 
-            listView2.Location = new Point(278, 192);
-            listView2.Name = "listView2";
-            listView2.Size = new Size(265, 125);
-            listView2.TabIndex = 3;
-            listView2.UseCompatibleStateImageBehavior = false;
-            listView2.View = View.List;
-            // 
-            // listView3
-            // 
-            listView3.Location = new Point(278, 337);
-            listView3.Name = "listView3";
-            listView3.Size = new Size(265, 125);
-            listView3.TabIndex = 3;
-            listView3.UseCompatibleStateImageBehavior = false;
-            listView3.View = View.List;
             // 
             // AddButton
             // 
@@ -173,16 +153,17 @@
             button2.Text = "Remove";
             button2.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // UpdateButton
             // 
-            button3.BackColor = Color.Cyan;
-            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
-            button3.Location = new Point(166, 410);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 4;
-            button3.Text = "Update";
-            button3.UseVisualStyleBackColor = false;
+            UpdateButton.BackColor = Color.Cyan;
+            UpdateButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
+            UpdateButton.Location = new Point(166, 410);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(94, 29);
+            UpdateButton.TabIndex = 4;
+            UpdateButton.Text = "Update";
+            UpdateButton.UseVisualStyleBackColor = false;
+            UpdateButton.Click += UpdateButton_Click;
             // 
             // ClearButton
             // 
@@ -202,12 +183,10 @@
             BackColor = Color.MediumPurple;
             ClientSize = new Size(800, 502);
             Controls.Add(ClearButton);
-            Controls.Add(button3);
+            Controls.Add(UpdateButton);
             Controls.Add(button2);
             Controls.Add(AddButton);
             Controls.Add(listView1);
-            Controls.Add(listView3);
-            Controls.Add(listView2);
             Controls.Add(ListViewSong);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -236,10 +215,8 @@
         private Label label4;
         private ListView ListViewSong;
         private ListView listView1;
-        private ListView listView2;
-        private ListView listView3;
         private Button button2;
-        private Button button3;
+        private Button UpdateButton;
         private Button ClearButton;
         private Button AddButton;
     }
