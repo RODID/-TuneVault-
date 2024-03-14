@@ -24,7 +24,7 @@ namespace Music_Library
 
         private LibraryManager(IMusicFactory factory)
         {
-            _factory = _factory;
+            _factory = factory;
             _songs = new List<ISong>();
         }
 
@@ -64,6 +64,23 @@ namespace Music_Library
         }
 
         //Linnear search - Alghorithm
+        /*
+        this is a simple linear search algorithm that continiously
+        cheacks each element of the collection until a matching element
+        is found or the entire collection has crossed
+
+        in my case i iterate over each song in the '_songs' collection
+        and cheack if the keyword matches the songs name,album name and/or artist
+
+        detta gör så att flexibiliteten för användaren blir användbar
+        då användaren kan söka efter låtar baserad på visa kriterier,
+        utan att användaren behöver komma ihåg exakta detaljer.
+
+        detta leder till en bättre prestanda för programmet
+
+        !!kanske ändrar detta till en binary search eller hash-based search!!
+         */
+
         public List<ISong> SearchSong(string keyword)
         {
             var searchResults = new List<ISong>();

@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    public class Playlist
+    public class Playlist : IPlaylist
     {
+        
+        public string Name { get; set; }
+        
+        
+        public Playlist(string name)
+        {
+            Name = name;
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace Music_Library
                 return;
             }
 
-            ISong song = LibraryManager.Instance.CreateSong(artistName, artistName, albumName, durationInSeconds);
+            ISong song = LibraryManager.Instance.CreateSong(artistName, songName, albumName, durationInSeconds);
 
             LibraryManager.Instance.AddSong(song);
 
