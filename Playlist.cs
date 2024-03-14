@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    internal class Playlist
+    public class Playlist
     {
     }
 }

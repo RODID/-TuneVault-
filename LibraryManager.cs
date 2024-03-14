@@ -9,27 +9,44 @@ namespace Music_Library
     internal class LibraryManager
     {
         private static LibraryManager _instance;
+        private readonly IMusicFactory _factory;
         public static LibraryManager Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new LibraryManager();
+                    _instance = new LibraryManager(new MusicFactory());
                 return _instance;
             }
         }
 
         private List<ISong> _songs;
 
-        private LibraryManager()
+        private LibraryManager(IMusicFactory factory)
         {
+            _factory = _factory;
             _songs = new List<ISong>();
         }
 
-        //Factory Pattern
-        public Song CreateSong(string name, string artist, string albumName, int durationInSeconds)
+        //Abstract Factory Pattern
+        /*
+         Facttory pattern with a slight variation,
+        by delegating the creation of ISong objects
+        to another class '_factory' that implements the 
+        'IMusicFactory Interface
+
+        skapade denna för att möjliggöra för användaren
+        att skapa egna spelistor.
+         */
+
+        public ISong CreateSong(string name, string artist, string albumName, int durationInSeconds)
         {
-            return new Song(name, artist, albumName, durationInSeconds);
+            return _factory.CreateSong(name, artist, albumName, durationInSeconds);
+        }
+
+        public  IPlaylist CreatePlaylist(string name)
+        {
+            return _factory.CreatePlaylist(name);
         }
 
         //Observer pattern
