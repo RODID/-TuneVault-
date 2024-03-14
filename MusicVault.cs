@@ -5,16 +5,18 @@ namespace Music_Library
 {
     public partial class MusicVault : Form
     {
+
         public MusicVault()
         {
             InitializeComponent();
 
             ListViewSong.View = View.Details;
-
             ListViewSong.Columns.Add("Artist", 150);
             ListViewSong.Columns.Add("Song", 150);
             ListViewSong.Columns.Add("Album", 150);
             ListViewSong.Columns.Add("Duration", 100);
+
+            RemoveButton.Click += RemoveButton_Click;
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -66,6 +68,60 @@ namespace Music_Library
         private void UpdateButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = SearchTextBox.Text;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                List<ISong> searchResult = LibraryManager.Instance.SearchSong(keyword);
+                UpdateListViewWithSearchResults(searchResult);
+            }
+            else
+            {
+                ListViewSearchedSongs.Items.Clear();
+            }
+        }
+
+        private void UpdateListViewWithSearchResults(List<ISong> searchResult)
+        {
+            ListViewSearchedSongs.Items.Clear();
+
+            foreach (ISong song in searchResult)
+            {
+                ListViewItem item = new ListViewItem(song.Name);
+                item.SubItems.Add(song.Artist);
+                item.SubItems.Add(song.AlbumName);
+                item.SubItems.Add(song.DurationInSeconds.ToString());
+                ListViewSearchedSongs.Items.Add(item);
+            }
+        }
+
+        public void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if(ListViewSong.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = ListViewSong.SelectedItems[0];
+                string songName = selectedItem.SubItems[1].Text;
+                string artistName = selectedItem.SubItems[0].Text;
+
+                ISong songToRemove = LibraryManager.Instance.SearchSongToRemove(songName, artistName);
+
+                if (songToRemove != null)
+                {
+                    LibraryManager.Instance.RemoveSong(songToRemove);
+                    ListViewSong.Items.Remove(selectedItem);
+                }
+                else
+                {
+                    MessageBox.Show("Song not found!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a song to remove.");
+            }
         }
     }
 }

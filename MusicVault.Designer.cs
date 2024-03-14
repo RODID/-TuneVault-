@@ -37,9 +37,9 @@
             label3 = new Label();
             label4 = new Label();
             ListViewSong = new ListView();
-            listView1 = new ListView();
+            ListViewSearchedSongs = new ListView();
             AddButton = new Button();
-            button2 = new Button();
+            RemoveButton = new Button();
             UpdateButton = new Button();
             ClearButton = new Button();
             label2 = new Label();
@@ -118,19 +118,19 @@
             // 
             ListViewSong.Location = new Point(289, 44);
             ListViewSong.Name = "ListViewSong";
-            ListViewSong.Size = new Size(499, 181);
+            ListViewSong.Size = new Size(597, 181);
             ListViewSong.TabIndex = 3;
             ListViewSong.UseCompatibleStateImageBehavior = false;
             ListViewSong.View = View.List;
             // 
-            // listView1
+            // ListViewSearchedSongs
             // 
-            listView1.Location = new Point(289, 288);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(499, 202);
-            listView1.TabIndex = 3;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.List;
+            ListViewSearchedSongs.Location = new Point(370, 288);
+            ListViewSearchedSongs.Name = "ListViewSearchedSongs";
+            ListViewSearchedSongs.Size = new Size(516, 229);
+            ListViewSearchedSongs.TabIndex = 3;
+            ListViewSearchedSongs.UseCompatibleStateImageBehavior = false;
+            ListViewSearchedSongs.View = View.List;
             // 
             // AddButton
             // 
@@ -144,16 +144,17 @@
             AddButton.UseVisualStyleBackColor = false;
             AddButton.Click += AddButton_Click;
             // 
-            // button2
+            // RemoveButton
             // 
-            button2.BackColor = Color.Red;
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
-            button2.Location = new Point(23, 243);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 4;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
+            RemoveButton.BackColor = Color.Red;
+            RemoveButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
+            RemoveButton.Location = new Point(23, 243);
+            RemoveButton.Name = "RemoveButton";
+            RemoveButton.Size = new Size(94, 29);
+            RemoveButton.TabIndex = 4;
+            RemoveButton.Text = "Remove";
+            RemoveButton.UseVisualStyleBackColor = false;
+            RemoveButton.Click += RemoveButton_Click;
             // 
             // UpdateButton
             // 
@@ -192,22 +193,23 @@
             // 
             SearchTextBox.Location = new Point(370, 245);
             SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(418, 27);
+            SearchTextBox.Size = new Size(516, 27);
             SearchTextBox.TabIndex = 7;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
             // MusicVault
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MediumPurple;
-            ClientSize = new Size(800, 502);
+            ClientSize = new Size(944, 543);
             Controls.Add(SearchTextBox);
             Controls.Add(label2);
             Controls.Add(ClearButton);
             Controls.Add(UpdateButton);
-            Controls.Add(button2);
+            Controls.Add(RemoveButton);
             Controls.Add(AddButton);
-            Controls.Add(listView1);
+            Controls.Add(ListViewSearchedSongs);
             Controls.Add(ListViewSong);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -235,8 +237,8 @@
         private Label label3;
         private Label label4;
         private ListView ListViewSong;
-        private ListView listView1;
-        private Button button2;
+        private ListView ListViewSearchedSongs;
+        private Button RemoveButton;
         private Button UpdateButton;
         private Button ClearButton;
         private Button AddButton;

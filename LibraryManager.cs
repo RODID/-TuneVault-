@@ -63,6 +63,11 @@ namespace Music_Library
             SongAdded?.Invoke(this, e);
         }
 
+        public void RemoveSong(ISong song)
+        {
+            _songs.Remove(song);
+        }
+
         //Linnear search - Alghorithm
         /*
         this is a simple linear search algorithm that continiously
@@ -92,6 +97,11 @@ namespace Music_Library
             searchResults.AddRange(_songs.Where(song => song.Artist.Contains(keyword) && !searchResults.Contains(song)));
 
             return searchResults;
+        }
+
+        public ISong SearchSongToRemove(string songName, string artistName)
+        {
+            return _songs.FirstOrDefault(song => song.Name == songName && song.Artist == artistName);
         }
     }
 }
