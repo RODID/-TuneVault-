@@ -1,4 +1,5 @@
 using System.Data;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Music_Library
@@ -100,28 +101,37 @@ namespace Music_Library
 
         public void RemoveButton_Click(object sender, EventArgs e)
         {
-            if(ListViewSong.SelectedItems.Count > 0)
+            try
             {
-                ListViewItem selectedItem = ListViewSong.SelectedItems[0];
-                string songName = selectedItem.SubItems[1].Text;
-                string artistName = selectedItem.SubItems[0].Text;
-
-                ISong songToRemove = LibraryManager.Instance.SearchSongToRemove(songName, artistName);
-
-                if (songToRemove != null)
+                if (ListViewSong.SelectedItems.Count < 0)
                 {
-                    LibraryManager.Instance.RemoveSong(songToRemove);
-                    ListViewSong.Items.Remove(selectedItem);
+                    MessageBox.Show("Please select an artist to remove");
+                    return;
                 }
-                else
+
+                foreach (ListViewItem selectedITem in ListViewSong.SelectedItems)
                 {
-                    MessageBox.Show("Song not found!");
+                    string artistToRemove = selectedITem.SubItems[0].Text;
+                    string songToRemove = selectedITem.SubItems[1].Text;
+
+                    ISong song = LibraryManager.Instance.SearchSongToRemove(artistToRemove, songToRemove);
+
+                    if (song != null)
+                    {
+                        LibraryManager.Instance.RemoveSong(song);
+                        ListViewSong.Items.Remove(selectedITem);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Artist not found!");
+                    }
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please select a song to remove.");
+                MessageBox.Show("Error: " +  ex.Message);
             }
+          
         }
     }
 }

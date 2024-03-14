@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,17 +26,20 @@ namespace Music_Library
 
         public void AddSong()
         {
-
+            LibraryManager.Instance.AddSong(this);
         }
 
         public void RemoveSong()
         {
-
+            LibraryManager.Instance.RemoveSong(this);
         }
 
-        public void UpdateSong()
+        public void UpdateSong(string newName, string newArtist, string newAlbumName, int newDurationInSeconds)
         {
-
+            Name = newName;
+            Artist = newArtist;
+            AlbumName = newAlbumName;
+            DurationInSeconds = newDurationInSeconds;
         }
     }
 }
