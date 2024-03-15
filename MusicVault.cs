@@ -127,11 +127,16 @@ namespace Music_Library
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error: " +  ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
-          
+
+        }
+
+        private void PlaylistButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

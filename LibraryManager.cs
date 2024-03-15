@@ -10,17 +10,17 @@ namespace Music_Library
     {
         private static LibraryManager _instance;
         private readonly IMusicFactory _factory;
+        private List<ISong> _songs;
         public static LibraryManager Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new LibraryManager(new MusicFactory());
+                    _instance = new LibraryManager(new ExtendedMusicFactory());
                 return _instance;
             }
         }
 
-        private List<ISong> _songs;
 
         private LibraryManager(IMusicFactory factory)
         {

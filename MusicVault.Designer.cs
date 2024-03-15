@@ -44,6 +44,7 @@
             ClearButton = new Button();
             label2 = new Label();
             SearchTextBox = new TextBox();
+            PlayListButton = new Button();
             SuspendLayout();
             // 
             // ArtistNameTextBox
@@ -197,12 +198,23 @@
             SearchTextBox.TabIndex = 7;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
+            // PlayListButton
+            // 
+            PlayListButton.Location = new Point(23, 334);
+            PlayListButton.Name = "PlayListButton";
+            PlayListButton.Size = new Size(94, 29);
+            PlayListButton.TabIndex = 8;
+            PlayListButton.Text = "Playlist";
+            PlayListButton.UseVisualStyleBackColor = true;
+            PlayListButton.Click += PlaylistButton_Click;
+            // 
             // MusicVault
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MediumPurple;
             ClientSize = new Size(944, 543);
+            Controls.Add(PlayListButton);
             Controls.Add(SearchTextBox);
             Controls.Add(label2);
             Controls.Add(ClearButton);
@@ -244,5 +256,6 @@
         private Button AddButton;
         private Label label2;
         private TextBox SearchTextBox;
+        private Button PlayListButton;
     }
 }
