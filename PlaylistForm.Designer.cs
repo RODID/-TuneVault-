@@ -36,6 +36,7 @@
             CreateButton = new Button();
             RenameButton = new Button();
             BackButton = new Button();
+            listView1 = new ListView();
             SuspendLayout();
             // 
             // AddButton
@@ -72,11 +73,12 @@
             // 
             // ListViewPlaylist
             // 
-            ListViewPlaylist.Location = new Point(12, 12);
+            ListViewPlaylist.Location = new Point(27, 25);
             ListViewPlaylist.Name = "ListViewPlaylist";
-            ListViewPlaylist.Size = new Size(518, 156);
+            ListViewPlaylist.Size = new Size(191, 156);
             ListViewPlaylist.TabIndex = 1;
             ListViewPlaylist.UseCompatibleStateImageBehavior = false;
+            ListViewPlaylist.View = View.List;
             ListViewPlaylist.SelectedIndexChanged += ListViewPlaylist_SIC;
             // 
             // CreateButton
@@ -112,6 +114,16 @@
             BackButton.UseVisualStyleBackColor = true;
             BackButton.Click += BackButton_Click;
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(251, 25);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(279, 156);
+            listView1.TabIndex = 1;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.List;
+            listView1.SelectedIndexChanged += ListViewPlaylist_SIC;
+            // 
             // PlaylistForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -120,6 +132,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(542, 450);
             Controls.Add(BackButton);
+            Controls.Add(listView1);
             Controls.Add(ListViewPlaylist);
             Controls.Add(ListViewPlaylistSongs);
             Controls.Add(RenameButton);
@@ -142,5 +155,6 @@
         private Button CreateButton;
         private Button RenameButton;
         private Button BackButton;
+        private ListView listView1;
     }
 }
