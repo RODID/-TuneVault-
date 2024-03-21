@@ -136,7 +136,8 @@ namespace Music_Library
 
         private void PlaylistButton_Click(object sender, EventArgs e)
         {
-
+            PlaylistForm playlistForm = new PlaylistForm();
+            ShowDialog(playlistForm);
         }
     }
 }

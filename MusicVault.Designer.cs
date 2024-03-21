@@ -136,7 +136,7 @@
             // AddButton
             // 
             AddButton.BackColor = Color.LawnGreen;
-            AddButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
+            AddButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             AddButton.Location = new Point(135, 288);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(94, 29);
@@ -148,7 +148,7 @@
             // RemoveButton
             // 
             RemoveButton.BackColor = Color.Red;
-            RemoveButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
+            RemoveButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             RemoveButton.Location = new Point(23, 243);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(94, 29);
@@ -160,7 +160,7 @@
             // UpdateButton
             // 
             UpdateButton.BackColor = Color.Cyan;
-            UpdateButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic);
+            UpdateButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             UpdateButton.Location = new Point(23, 288);
             UpdateButton.Name = "UpdateButton";
             UpdateButton.Size = new Size(94, 29);
@@ -172,6 +172,7 @@
             // ClearButton
             // 
             ClearButton.BackColor = Color.Gold;
+            ClearButton.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             ClearButton.Location = new Point(135, 243);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(94, 29);
@@ -200,12 +201,14 @@
             // 
             // PlayListButton
             // 
+            PlayListButton.BackColor = Color.Chocolate;
+            PlayListButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PlayListButton.Location = new Point(23, 334);
             PlayListButton.Name = "PlayListButton";
             PlayListButton.Size = new Size(94, 29);
             PlayListButton.TabIndex = 8;
             PlayListButton.Text = "Playlist";
-            PlayListButton.UseVisualStyleBackColor = true;
+            PlayListButton.UseVisualStyleBackColor = false;
             PlayListButton.Click += PlaylistButton_Click;
             // 
             // MusicVault

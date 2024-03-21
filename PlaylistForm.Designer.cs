@@ -42,7 +42,7 @@
             // AddButton
             // 
             AddButton.ForeColor = SystemColors.ActiveCaptionText;
-            AddButton.Location = new Point(27, 187);
+            AddButton.Location = new Point(426, 187);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(94, 29);
             AddButton.TabIndex = 0;
@@ -53,7 +53,7 @@
             // RemoveButton
             // 
             RemoveButton.ForeColor = SystemColors.ActiveCaptionText;
-            RemoveButton.Location = new Point(27, 222);
+            RemoveButton.Location = new Point(426, 222);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(94, 29);
             RemoveButton.TabIndex = 0;
@@ -84,7 +84,7 @@
             // CreateButton
             // 
             CreateButton.ForeColor = SystemColors.ActiveCaptionText;
-            CreateButton.Location = new Point(436, 187);
+            CreateButton.Location = new Point(39, 187);
             CreateButton.Name = "CreateButton";
             CreateButton.Size = new Size(94, 29);
             CreateButton.TabIndex = 0;
@@ -95,7 +95,7 @@
             // RenameButton
             // 
             RenameButton.ForeColor = SystemColors.ActiveCaptionText;
-            RenameButton.Location = new Point(436, 222);
+            RenameButton.Location = new Point(39, 222);
             RenameButton.Name = "RenameButton";
             RenameButton.Size = new Size(94, 29);
             RenameButton.TabIndex = 0;
