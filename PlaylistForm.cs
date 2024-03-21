@@ -12,6 +12,8 @@ namespace Music_Library
 {
     public partial class PlaylistForm : Form
     {
+
+        private Dictionary<string, Playlist> playlists = new Dictionary<string, Playlist>();
         public PlaylistForm()
         {
             InitializeComponent();
@@ -21,12 +23,29 @@ namespace Music_Library
 
         private void OnSongAdded(object? sender, SongAddedEventArgs e)
         {
-            ListViewItem songItem = new ListViewItem(e.Song.Name);
-            songItem.SubItems
+            foreach(var playlist in playlists.Values)
+            {
+                playlist.AddSong(e.Song);
+            }
         }
 
         private void AddSongButton_Click(object sender, EventArgs e)
         {
+            if (ListViewPlaylist.SelectedItems.Count > 0 && ListViewSearchSongs.SelectedItems.Count > 0)
+            {
+                string selectedPlaylistName = ListViewPlaylist.SelectedItems[0].Text;
+                string selectedSongName = ListViewSearchSongs.SelectedItems[0].Text;
+
+                if (playlists.ContainsKey(selectedPlaylistName))
+                {
+                    ISong selectedSong = LibraryManager.Instance.GetSongByName(selectedSongName);
+                    if(selectedSong != null)
+                    {
+                        playlists[selectedPlaylistName].AddSong(selectedSong);
+                        ListViewPlaylist_SIC(sender, e);
+                    }
+                }
+            }
 
         }
 
@@ -38,7 +57,10 @@ namespace Music_Library
         private void CreateButton_Click(object sender, EventArgs e)
         {
             string playlistName = "Q(^^Q)";
-            Playlist newPlaylist = new Playlist(playlistName);
+            List<ISong> newPlaylistSongs = new List<ISong>();
+
+            Playlist newPlaylist = new Playlist(playlistName, newPlaylistSongs);
+            playlists.Add(playlistName, newPlaylist);
 
             ListViewItem item = new ListViewItem(playlistName);
             ListViewPlaylist.Items.Add(item);
@@ -58,15 +80,24 @@ namespace Music_Library
         {
             if (ListViewPlaylist.SelectedItems.Count < 0 )
             {
-                string gselectedPlaylistName = ListViewPlaylist.SelectedItems[0].Text;
+                string selectedPlaylistName = ListViewPlaylist.SelectedItems[0].Text;
 
                 ListViewPlaylistSongs.Items.Clear();
+
+                if (playlists.ContainsKey(selectedPlaylistName))
+                {
+                    foreach(var song in playlists[selectedPlaylistName].Song)
+                    {
+                        ListViewItem songItem = new ListViewItem(song.Name);
+                        ListViewPlaylistSongs.Items.Add(songItem);
+                    }
+                }
             }
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

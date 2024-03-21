@@ -8,13 +8,33 @@ namespace Music_Library
 {
     public class Playlist : IPlaylist
     {
-        
-        public string Name { get; set; }
-        
-        
-        public Playlist(string name)
+        public Playlist(string name, List<ISong> song)
         {
             Name = name;
+            Song = song;
+        }
+
+        public string Name { get; set; }
+        public List<ISong> Song { get; set; }
+        
+        public void AddSong(ISong song)
+        {
+            Song.Add(song);
+        }
+
+        public void RemoveSong(ISong song)
+        {
+            Song.Remove(song);
+        }
+        public void ClearPlaylist()
+        {
+            Song.Clear();
+        }
+
+
+        public void Shuffle()
+        {
+            
         }
     }
 }

@@ -103,5 +103,10 @@ namespace Music_Library
         {
             return _songs.FirstOrDefault(song => song.Name == songName && song.Artist == artistName);
         }
+
+        public ISong GetSongByName(string name)
+        {
+            return _songs.FirstOrDefault(song => song.Name == name);
+        }
     }
 }

@@ -15,7 +15,9 @@ namespace Music_Library
 
         public IPlaylist CreatePlaylist(string name)
         {
-            return new Playlist(name);
+            List<ISong> songList = new List<ISong>();
+
+            return new Playlist(name, songList);
         }
     }
 }

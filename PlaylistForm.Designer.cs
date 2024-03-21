@@ -36,13 +36,14 @@
             CreateButton = new Button();
             RenameButton = new Button();
             BackButton = new Button();
-            listView1 = new ListView();
+            ListViewSearchSongs = new ListView();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // AddButton
             // 
             AddButton.ForeColor = SystemColors.ActiveCaptionText;
-            AddButton.Location = new Point(426, 187);
+            AddButton.Location = new Point(155, 217);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(94, 29);
             AddButton.TabIndex = 0;
@@ -53,7 +54,7 @@
             // RemoveButton
             // 
             RemoveButton.ForeColor = SystemColors.ActiveCaptionText;
-            RemoveButton.Location = new Point(426, 222);
+            RemoveButton.Location = new Point(436, 252);
             RemoveButton.Name = "RemoveButton";
             RemoveButton.Size = new Size(94, 29);
             RemoveButton.TabIndex = 0;
@@ -73,9 +74,9 @@
             // 
             // ListViewPlaylist
             // 
-            ListViewPlaylist.Location = new Point(27, 25);
+            ListViewPlaylist.Location = new Point(39, 47);
             ListViewPlaylist.Name = "ListViewPlaylist";
-            ListViewPlaylist.Size = new Size(191, 156);
+            ListViewPlaylist.Size = new Size(210, 164);
             ListViewPlaylist.TabIndex = 1;
             ListViewPlaylist.UseCompatibleStateImageBehavior = false;
             ListViewPlaylist.View = View.List;
@@ -84,7 +85,7 @@
             // CreateButton
             // 
             CreateButton.ForeColor = SystemColors.ActiveCaptionText;
-            CreateButton.Location = new Point(39, 187);
+            CreateButton.Location = new Point(39, 217);
             CreateButton.Name = "CreateButton";
             CreateButton.Size = new Size(94, 29);
             CreateButton.TabIndex = 0;
@@ -95,7 +96,7 @@
             // RenameButton
             // 
             RenameButton.ForeColor = SystemColors.ActiveCaptionText;
-            RenameButton.Location = new Point(39, 222);
+            RenameButton.Location = new Point(39, 252);
             RenameButton.Name = "RenameButton";
             RenameButton.Size = new Size(94, 29);
             RenameButton.TabIndex = 0;
@@ -106,7 +107,7 @@
             // BackButton
             // 
             BackButton.ForeColor = SystemColors.ActiveCaptionText;
-            BackButton.Location = new Point(226, 264);
+            BackButton.Location = new Point(155, 264);
             BackButton.Name = "BackButton";
             BackButton.Size = new Size(94, 29);
             BackButton.TabIndex = 2;
@@ -114,15 +115,22 @@
             BackButton.UseVisualStyleBackColor = true;
             BackButton.Click += BackButton_Click;
             // 
-            // listView1
+            // ListViewSearchSongs
             // 
-            listView1.Location = new Point(251, 25);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(279, 156);
-            listView1.TabIndex = 1;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.List;
-            listView1.SelectedIndexChanged += ListViewPlaylist_SIC;
+            ListViewSearchSongs.Location = new Point(272, 47);
+            ListViewSearchSongs.Name = "ListViewSearchSongs";
+            ListViewSearchSongs.Size = new Size(262, 199);
+            ListViewSearchSongs.TabIndex = 1;
+            ListViewSearchSongs.UseCompatibleStateImageBehavior = false;
+            ListViewSearchSongs.View = View.List;
+            ListViewSearchSongs.SelectedIndexChanged += ListViewPlaylist_SIC;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(301, 14);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(229, 27);
+            textBox1.TabIndex = 3;
             // 
             // PlaylistForm
             // 
@@ -131,8 +139,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(542, 450);
+            Controls.Add(textBox1);
             Controls.Add(BackButton);
-            Controls.Add(listView1);
+            Controls.Add(ListViewSearchSongs);
             Controls.Add(ListViewPlaylist);
             Controls.Add(ListViewPlaylistSongs);
             Controls.Add(RenameButton);
@@ -144,6 +153,7 @@
             Name = "PlaylistForm";
             Text = "PlaylistForm";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -155,6 +165,7 @@
         private Button CreateButton;
         private Button RenameButton;
         private Button BackButton;
-        private ListView listView1;
+        private ListView ListViewSearchSongs;
+        private TextBox textBox1;
     }
 }

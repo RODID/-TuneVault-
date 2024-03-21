@@ -17,5 +17,7 @@ namespace Music_Library
         void RemoveSong();
         void UpdateSong(string newName, string newArtist, string newAlbumName, int newDurationInSeconds);
 
+        void GetSongByName();
+
     }
 }
