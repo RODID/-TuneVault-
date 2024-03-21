@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music_Library
 {
-    public partial class PlaylistForm : Form
+    public partial class PlaylistForm : Form, ISongObserver
     {
 
         private Dictionary<string, Playlist> playlists = new Dictionary<string, Playlist>();
@@ -18,6 +19,7 @@ namespace Music_Library
         {
             InitializeComponent();
 
+            LibraryManager.Instance.RegisterObserver(this);
             LibraryManager.Instance.SongAdded += OnSongAdded;
         }
 
@@ -51,12 +53,12 @@ namespace Music_Library
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            string playlistName = "Q(^^Q)";
+            string playlistName = GenerateRandomPlaylistName();
             List<ISong> newPlaylistSongs = new List<ISong>();
 
             Playlist newPlaylist = new Playlist(playlistName, newPlaylistSongs);
@@ -66,9 +68,34 @@ namespace Music_Library
             ListViewPlaylist.Items.Add(item);
         }
 
+        private string GenerateRandomPlaylistName()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTVWXYZ0123456789";
+
+            const int nameLength = 6;
+
+            Random random = new Random();
+
+            string randomName = new string(Enumerable.Repeat(chars, nameLength).Select(s => s[random.Next(s.Length)]).ToArray());
+
+            return randomName;
+        }
+        
+
         private void RenameButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if(ListViewPlaylist.SelectedItems != null)
+                {
+                    RenamePlaylistForm renamePlaylistForm = new RenamePlaylistForm();
+                    renamePlaylistForm.ShowDialog();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void ListViewPlaylistSong_SIC(object sender, EventArgs e)
@@ -98,6 +125,15 @@ namespace Music_Library
         private void BackButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public void UpdateSong(ISong song)
+        {
+            ListViewItem item = new ListViewItem(song.Name);
+            item.SubItems.Add(song.Artist);
+            item.SubItems.Add(song.AlbumName);
+            item.SubItems.Add(song.DurationInSeconds.ToString());
+            ListViewSearchSongs.Items.Add(item);
         }
     }
 }

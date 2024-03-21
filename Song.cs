@@ -42,9 +42,7 @@ namespace Music_Library
             DurationInSeconds = newDurationInSeconds;
         }
 
-        public void GetSongByName(string name)
-        {
-            ISong song = LibraryManager.Instance.GetSongByName(name);
-        }
+        
+        
     }
 }

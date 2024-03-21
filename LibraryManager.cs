@@ -11,6 +11,7 @@ namespace Music_Library
         private static LibraryManager _instance;
         private readonly IMusicFactory _factory;
         private List<ISong> _songs;
+        private List<ISongObserver> _observers = new List<ISongObserver>();
         public static LibraryManager Instance
         {
             get
@@ -56,8 +57,25 @@ namespace Music_Library
         {
             _songs.Add(song);
             OnSongAdded(new Music_Library.SongAddedEventArgs(song));
+            NotifyObserver(song);
         }
 
+        public void RegisterObserver(ISongObserver observer)
+        {
+            _observers.Add(observer);
+        }
+
+        public void RemoveObserver(ISongObserver observer)
+        {
+            _observers.Remove(observer);
+        }
+        public void NotifyObserver(ISong song)
+        {
+            foreach(var observer in _observers)
+            {
+                observer.UpdateSong(song);
+            }
+        }
         private void OnSongAdded(Music_Library.SongAddedEventArgs e)
         {
             SongAdded?.Invoke(this, e);

@@ -44,7 +44,7 @@
             ClearButton = new Button();
             label2 = new Label();
             SearchTextBox = new TextBox();
-            PlayListButton = new Button();
+            PlaylistButtonX = new Button();
             SuspendLayout();
             // 
             // ArtistNameTextBox
@@ -199,17 +199,15 @@
             SearchTextBox.TabIndex = 7;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
-            // PlayListButton
+            // PlaylistButtonX
             // 
-            PlayListButton.BackColor = Color.Chocolate;
-            PlayListButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            PlayListButton.Location = new Point(23, 334);
-            PlayListButton.Name = "PlayListButton";
-            PlayListButton.Size = new Size(94, 29);
-            PlayListButton.TabIndex = 8;
-            PlayListButton.Text = "Playlist";
-            PlayListButton.UseVisualStyleBackColor = false;
-            PlayListButton.Click += PlaylistButton_Click;
+            PlaylistButtonX.Location = new Point(256, 333);
+            PlaylistButtonX.Name = "PlaylistButtonX";
+            PlaylistButtonX.Size = new Size(94, 29);
+            PlaylistButtonX.TabIndex = 9;
+            PlaylistButtonX.Text = "Playlist";
+            PlaylistButtonX.UseVisualStyleBackColor = true;
+            PlaylistButtonX.Click += PlaylistButton_Click;
             // 
             // MusicVault
             // 
@@ -217,7 +215,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MediumPurple;
             ClientSize = new Size(944, 543);
-            Controls.Add(PlayListButton);
+            Controls.Add(PlaylistButtonX);
             Controls.Add(SearchTextBox);
             Controls.Add(label2);
             Controls.Add(ClearButton);
@@ -259,6 +257,6 @@
         private Button AddButton;
         private Label label2;
         private TextBox SearchTextBox;
-        private Button PlayListButton;
+        private Button PlaylistButtonX;
     }
 }

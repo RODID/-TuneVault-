@@ -134,7 +134,7 @@ namespace Music_Library
 
         }
 
-        public void PlaylistButton_Click(object sender, EventArgs e)
+        private void PlaylistButton_Click(object sender, EventArgs e)
         {
             PlaylistForm playlistForm = new PlaylistForm();
             playlistForm.ShowDialog();
