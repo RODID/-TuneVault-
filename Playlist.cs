@@ -6,7 +6,35 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    internal class Playlist
+    public class Playlist : IPlaylist
     {
+        public Playlist(string name, List<ISong> song)
+        {
+            Name = name;
+            Song = song;
+        }
+
+        public string Name { get; set; }
+        public List<ISong> Song { get; set; }
+        
+        public void AddSong(ISong song)
+        {
+            Song.Add(song);
+        }
+
+        public void RemoveSong(ISong song)
+        {
+            Song.Remove(song);
+        }
+        public void ClearPlaylist()
+        {
+            Song.Clear();
+        }
+
+
+        public void Shuffle()
+        {
+            
+        }
     }
 }
