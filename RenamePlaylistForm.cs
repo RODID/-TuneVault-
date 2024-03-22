@@ -14,12 +14,13 @@ namespace Music_Library
     {
         private readonly string originalName;
         public string NewName { get; private set; }
+        public string NewPlaystationName { get; internal set; }
 
-        public RenamePlaylistForm()
+        public RenamePlaylistForm(string originalName)
         {
             InitializeComponent();
 
-            originalName = NewName;
+            this.originalName = originalName;
             PlaylistTextBox.Text = originalName;
         }
 
@@ -38,24 +39,8 @@ namespace Music_Library
                 return;
             }
 
-            NewName = newName;
+            NewName = originalName;
             Close();
-        }
-
-        private void PlaylistTextBox_Enter(object sender, EventArgs e)
-        {
-            if(PlaylistTextBox.Text == originalName)
-            {
-                PlaylistTextBox.Text = "";
-            }
-        }
-
-        private void PlaylistTextBox_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(PlaylistTextBox.Text))
-            {
-                PlaylistTextBox.Text = originalName;
-            }
         }
     }
 }

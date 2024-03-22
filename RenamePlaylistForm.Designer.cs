@@ -40,8 +40,6 @@
             PlaylistTextBox.Name = "PlaylistTextBox";
             PlaylistTextBox.Size = new Size(332, 27);
             PlaylistTextBox.TabIndex = 0;
-            PlaylistTextBox.Enter += PlaylistTextBox_Enter;
-            PlaylistTextBox.Leave += PlaylistTextBox_Leave;
             // 
             // ChangeButton
             // 

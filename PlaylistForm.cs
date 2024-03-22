@@ -13,7 +13,7 @@ namespace Music_Library
 {
     public partial class PlaylistForm : Form, ISongObserver
     {
-
+        public MusicVault musicVault = new MusicVault();
         private Dictionary<string, Playlist> playlists = new Dictionary<string, Playlist>();
         public PlaylistForm()
         {
@@ -25,7 +25,7 @@ namespace Music_Library
 
         private void OnSongAdded(object? sender, SongAddedEventArgs e)
         {
-            foreach(var playlist in playlists.Values)
+            foreach (var playlist in playlists.Values)
             {
                 playlist.AddSong(e.Song);
             }
@@ -41,7 +41,7 @@ namespace Music_Library
                 if (playlists.ContainsKey(selectedPlaylistName))
                 {
                     ISong selectedSong = LibraryManager.Instance.GetSongByName(selectedSongName);
-                    if(selectedSong != null)
+                    if (selectedSong != null)
                     {
                         playlists[selectedPlaylistName].AddSong(selectedSong);
                         ListViewPlaylist_SIC(sender, e);
@@ -53,7 +53,7 @@ namespace Music_Library
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
@@ -66,6 +66,12 @@ namespace Music_Library
 
             ListViewItem item = new ListViewItem(playlistName);
             ListViewPlaylist.Items.Add(item);
+
+            item.Selected = true;
+            item.Focused = true;
+            ListViewPlaylist.Select();
+
+            RenameButton_Click(sender, e);
         }
 
         private string GenerateRandomPlaylistName()
@@ -80,19 +86,31 @@ namespace Music_Library
 
             return randomName;
         }
-        
+
 
         private void RenameButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if(ListViewPlaylist.SelectedItems != null)
+                if (ListViewPlaylist.SelectedItems != null)
                 {
-                    RenamePlaylistForm renamePlaylistForm = new RenamePlaylistForm();
-                    renamePlaylistForm.ShowDialog();
+                    string selectedPlaylistName = ListViewPlaylist.SelectedItems[0].Text;
+                    RenamePlaylistForm renamePlaylistForm = new RenamePlaylistForm(selectedPlaylistName);
+                    if(renamePlaylistForm.ShowDialog() == DialogResult.OK)
+                    {
+                        string newName = renamePlaylistForm.NewPlaystationName;
+                        if(!string.IsNullOrEmpty(newName))
+                        {
+                            ListViewPlaylist.SelectedItems[0].Text = newName;
+
+                            var playlist = playlists[selectedPlaylistName];
+                            playlists.Remove(selectedPlaylistName );
+                            playlists.Add(newName, playlist);
+                        }
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
@@ -105,7 +123,7 @@ namespace Music_Library
 
         private void ListViewPlaylist_SIC(object sender, EventArgs e)
         {
-            if (ListViewPlaylist.SelectedItems.Count < 0 )
+            if (ListViewPlaylist.SelectedItems.Count < 0)
             {
                 string selectedPlaylistName = ListViewPlaylist.SelectedItems[0].Text;
 
@@ -113,7 +131,7 @@ namespace Music_Library
 
                 if (playlists.ContainsKey(selectedPlaylistName))
                 {
-                    foreach(var song in playlists[selectedPlaylistName].Song)
+                    foreach (var song in playlists[selectedPlaylistName].Song)
                     {
                         ListViewItem songItem = new ListViewItem(song.Name);
                         ListViewPlaylistSongs.Items.Add(songItem);
@@ -134,6 +152,21 @@ namespace Music_Library
             item.SubItems.Add(song.AlbumName);
             item.SubItems.Add(song.DurationInSeconds.ToString());
             ListViewSearchSongs.Items.Add(item);
+        }
+
+        private void SearchSongPlaylistTextBox_TxtChng(object sender, EventArgs e)
+        {
+            
+            string keyword = SearchPlaylistTextBox.Text;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                List<ISong> searchResult = LibraryManager.Instance.SearchSong(keyword);
+                musicVault.UpdateListViewWithSearchResults(searchResult);
+            }
+            else
+            {
+                SearchPlaylistTextBox.Clear();
+            }
         }
     }
 }

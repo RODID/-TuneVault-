@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    internal class LibraryManager
+    public class LibraryManager
     {
         private static LibraryManager _instance;
         private readonly IMusicFactory _factory;
@@ -45,7 +45,7 @@ namespace Music_Library
             return _factory.CreateSong(name, artist, albumName, durationInSeconds);
         }
 
-        public  IPlaylist CreatePlaylist(string name)
+        public IPlaylist CreatePlaylist(string name)
         {
             return _factory.CreatePlaylist(name);
         }
@@ -71,7 +71,7 @@ namespace Music_Library
         }
         public void NotifyObserver(ISong song)
         {
-            foreach(var observer in _observers)
+            foreach (var observer in _observers)
             {
                 observer.UpdateSong(song);
             }

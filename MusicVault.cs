@@ -18,6 +18,13 @@ namespace Music_Library
             ListViewSong.Columns.Add("Duration", 100);
 
             RemoveButton.Click += RemoveButton_Click;
+
+            LibraryManager.Instance.SongAdded += OnSongAdded;
+        }
+
+        private void OnSongAdded(object? sender, SongAddedEventArgs e)
+        {
+            UpdateListViewWithSearchResults(new List<ISong> { e.Song });
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -85,7 +92,7 @@ namespace Music_Library
             }
         }
 
-        private void UpdateListViewWithSearchResults(List<ISong> searchResult)
+        public void UpdateListViewWithSearchResults(List<ISong> searchResult)
         {
             ListViewSearchedSongs.Items.Clear();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Library
 {
-    internal interface ISongObserver
+    public interface ISongObserver
     {
         void UpdateSong(ISong song);
     }

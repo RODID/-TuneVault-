@@ -37,7 +37,7 @@
             RenameButton = new Button();
             BackButton = new Button();
             ListViewSearchSongs = new ListView();
-            textBox1 = new TextBox();
+            SearchPlaylistTextBox = new TextBox();
             SuspendLayout();
             // 
             // AddButton
@@ -125,12 +125,13 @@
             ListViewSearchSongs.View = View.List;
             ListViewSearchSongs.SelectedIndexChanged += ListViewPlaylist_SIC;
             // 
-            // textBox1
+            // SearchPlaylistTextBox
             // 
-            textBox1.Location = new Point(301, 14);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(229, 27);
-            textBox1.TabIndex = 3;
+            SearchPlaylistTextBox.Location = new Point(272, 14);
+            SearchPlaylistTextBox.Name = "SearchPlaylistTextBox";
+            SearchPlaylistTextBox.Size = new Size(258, 27);
+            SearchPlaylistTextBox.TabIndex = 3;
+            SearchPlaylistTextBox.TextChanged += SearchSongPlaylistTextBox_TxtChng;
             // 
             // PlaylistForm
             // 
@@ -139,7 +140,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(542, 450);
-            Controls.Add(textBox1);
+            Controls.Add(SearchPlaylistTextBox);
             Controls.Add(BackButton);
             Controls.Add(ListViewSearchSongs);
             Controls.Add(ListViewPlaylist);
@@ -166,6 +167,6 @@
         private Button RenameButton;
         private Button BackButton;
         private ListView ListViewSearchSongs;
-        private TextBox textBox1;
+        private TextBox SearchPlaylistTextBox;
     }
 }
